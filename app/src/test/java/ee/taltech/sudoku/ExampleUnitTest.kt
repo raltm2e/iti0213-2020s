@@ -1,4 +1,4 @@
-package ee.taltech.tictactoe
+package ee.taltech.sudoku
 
 import org.junit.Test
 
