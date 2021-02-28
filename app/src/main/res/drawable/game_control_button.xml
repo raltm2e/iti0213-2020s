@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <shape android:shape="rectangle">
-            <corners android:radius="0dp" />
-            <stroke android:width="0.5dp" android:color="#000000"/>
-        </shape>
-    </item>
+    <item android:state_pressed="true"
+        android:drawable="@drawable/button_pressed"
+        android:color="@color/dark_grey"/>
+    <item android:drawable="@drawable/button_normal"/>
 </selector>
