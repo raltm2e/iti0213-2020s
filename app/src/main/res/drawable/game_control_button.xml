@@ -5,7 +5,6 @@
             <corners android:radius="0dp" />
 <!--            Radius is 0dp on purpose, sudoku is with rectangle boxes, without any round edges-->
             <stroke android:width="2dp" android:color="#D8D8D8"/>
-            <gradient android:angle="-90" android:startColor="#D8D8D8" android:endColor="@color/black" />
         </shape>
     </item>
 </selector>
