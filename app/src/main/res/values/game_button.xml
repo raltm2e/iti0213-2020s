@@ -5,7 +5,7 @@
 
     <style name="game_button_style">
         <item name="android:textSize">@dimen/game_button_text_size</item>
-        <item name="android:backgroundTint">#FFFFFF</item>
+        <item name="android:background">@drawable/game_control_button</item>
         <item name="android:textColor">#1D1233</item>
     </style>
 
