@@ -1753,10 +1753,12 @@
 
             <Button
                 android:id="@+id/button19"
+                style="@style/game_button_style"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
+                android:background="@drawable/game_control_button"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:paddingLeft="0dp"
@@ -1774,11 +1776,13 @@
 
             <Button
                 android:id="@+id/button17"
+                style="@style/game_button_style"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
+                android:background="@drawable/game_control_button"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:paddingLeft="0dp"
@@ -1797,10 +1801,12 @@
 
             <Button
                 android:id="@+id/button18"
+                style="@style/game_button_style"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
+                android:background="@drawable/game_control_button"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:paddingLeft="0dp"
@@ -1818,10 +1824,12 @@
 
             <Button
                 android:id="@+id/button16"
+                style="@style/game_button_style"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
+                android:background="@drawable/game_control_button"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:paddingLeft="0dp"
@@ -1839,11 +1847,13 @@
 
             <Button
                 android:id="@+id/button14"
+                style="@style/game_button_style"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
+                android:background="@drawable/game_control_button"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:paddingLeft="0dp"
@@ -1862,10 +1872,12 @@
 
             <Button
                 android:id="@+id/button15"
+                style="@style/game_button_style"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
+                android:background="@drawable/game_control_button"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:paddingLeft="0dp"
@@ -1883,11 +1895,13 @@
 
             <Button
                 android:id="@+id/button13"
+                style="@style/game_button_style"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
+                android:background="@drawable/game_control_button"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:paddingLeft="0dp"
@@ -1906,12 +1920,14 @@
 
             <Button
                 android:id="@+id/button11"
+                style="@style/game_button_style"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
+                android:background="@drawable/game_control_button"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:paddingLeft="0dp"
@@ -1931,11 +1947,13 @@
 
             <Button
                 android:id="@+id/button12"
+                style="@style/game_button_style"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
+                android:background="@drawable/game_control_button"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:paddingLeft="0dp"
