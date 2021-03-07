@@ -2,9 +2,6 @@ package ee.taltech.sudoku
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
 
 class MainActivity : AppCompatActivity() {
     private lateinit var gameStateRepository: GameStateRepository
