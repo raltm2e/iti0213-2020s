@@ -20,20 +20,22 @@ class GameStateRepository(val context: Context) {
 
     fun add(gameState: GameState){
         var contentValues = ContentValues()
-        contentValues.put(DbHelper.GAMESTATE, gameState.gameBoard)
-        contentValues.put(DbHelper.PERSON_LASTNAME, gameState.difficulty)
-        db.insert(DbHelper.TABLE_PERSONS, null, contentValues)
+        contentValues.put(DbHelper.GAMEBOARD, gameState.gameBoard)
+        contentValues.put(DbHelper.DIFFICULTY, gameState.difficulty)
+        db.insert(DbHelper.TABLE_GAMESTATE, null, contentValues)
     }
 
     fun getAll(): List<GameState> {
         val persons = ArrayList<GameState>()
-        val columns = arrayOf(DbHelper.PERSON_ID, DbHelper.GAMESTATE, DbHelper.PERSON_LASTNAME)
-        val cursor = db.query(DbHelper.TABLE_PERSONS, columns, null, null, null, null, DbHelper.PERSON_LASTNAME + ", " + DbHelper.GAMESTATE)
+        val columns = arrayOf(DbHelper.GAMESTATE_ID, DbHelper.GAMEBOARD, DbHelper.DIFFICULTY)
+        val cursor = db.query(DbHelper.TABLE_GAMESTATE, columns, null, null, null, null, DbHelper.DIFFICULTY + ", " + DbHelper.GAMEBOARD)
         while(cursor.moveToNext()){
             persons.add(
                     GameState(cursor.getInt(0),
-                            cursor.getString(cursor.getColumnIndex(DbHelper.GAMESTATE)),
-                            cursor.getString(cursor.getColumnIndex(DbHelper.PERSON_LASTNAME)))
+                            cursor.getString(cursor.getColumnIndex(DbHelper.GAMEBOARD)),
+                            cursor.getString(cursor.getColumnIndex(DbHelper.DIFFICULTY)),
+                            cursor.getInt(1),
+                            cursor.getInt(2))
             )
         }
         cursor.close()

@@ -4,12 +4,12 @@ class GameState {
     var id: Int = 0
     var gameBoard: String = ""
     var difficulty: String = ""
-    var timeSpent: Int = 0
-    var gameFinished: Boolean = false
+    var timeSpent: Int = 0      // Time spent in seconds
+    var gameFinished: Int = 0
 
-    constructor(gameBoard: String, scoreBoard: String, timeSpent: Int, gameFinished: Boolean): this(0, gameBoard, scoreBoard, timeSpent, gameFinished)
+    constructor(gameBoard: String, scoreBoard: String, timeSpent: Int, gameFinished: Int): this(0, gameBoard, scoreBoard, timeSpent, gameFinished)
 
-    constructor(id: Int, gameBoard: String, difficulty: String, timeSpent: Int, gameFinished: Boolean) {
+    constructor(id: Int, gameBoard: String, difficulty: String, timeSpent: Int, gameFinished: Int) {
         this.id = id
         this.gameBoard = gameBoard
         this.difficulty = difficulty
