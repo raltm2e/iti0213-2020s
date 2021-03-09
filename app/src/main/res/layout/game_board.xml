@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/gameboard"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
@@ -2057,6 +2058,7 @@
                 android:background="@drawable/game_control_button"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:onClick="buttonPressed"
                 android:padding="0dp"
                 android:paddingLeft="0dp"
                 android:paddingTop="0dp"
@@ -2069,8 +2071,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/button18"
-                app:layout_constraintTop_toBottomOf="@+id/button16"
-                android:onClick="buttonPressed" />
+                app:layout_constraintTop_toBottomOf="@+id/button16" />
 
             <Button
                 android:id="@+id/button17"
