@@ -12,6 +12,8 @@
 		E1603AF22624699A00A03C2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1603AF02624699A00A03C2A /* Main.storyboard */; };
 		E1603AF42624699B00A03C2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1603AF32624699B00A03C2A /* Assets.xcassets */; };
 		E1603AF72624699B00A03C2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1603AF52624699B00A03C2A /* LaunchScreen.storyboard */; };
+		E1DD51062635C78D008D1A49 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD51052635C78D008D1A49 /* Tile.swift */; };
+		E1DD51082635C88D008D1A49 /* SudokuBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD51072635C88D008D1A49 /* SudokuBrain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		E1603AF32624699B00A03C2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1603AF62624699B00A03C2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E1603AF82624699B00A03C2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1DD51052635C78D008D1A49 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
+		E1DD51072635C88D008D1A49 /* SudokuBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuBrain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				E1603AF32624699B00A03C2A /* Assets.xcassets */,
 				E1603AF52624699B00A03C2A /* LaunchScreen.storyboard */,
 				E1603AF82624699B00A03C2A /* Info.plist */,
+				E1DD51052635C78D008D1A49 /* Tile.swift */,
+				E1DD51072635C88D008D1A49 /* SudokuBrain.swift */,
 			);
 			path = sudoku3;
 			sourceTree = "<group>";
@@ -135,8 +141,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1DD51062635C78D008D1A49 /* Tile.swift in Sources */,
 				E1603AEF2624699A00A03C2A /* ViewController.swift in Sources */,
 				E1603AED2624699A00A03C2A /* AppDelegate.swift in Sources */,
+				E1DD51082635C88D008D1A49 /* SudokuBrain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

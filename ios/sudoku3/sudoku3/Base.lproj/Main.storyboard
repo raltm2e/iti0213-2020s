@@ -1263,6 +1263,19 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="newGame" destination="NZw-vA-PfY" id="SE1-xA-jav"/>
+                        <outlet property="smallBoard1" destination="9mb-Pv-QYi" id="Jod-Vz-lCN"/>
+                        <outlet property="smallBoard2" destination="xTw-Qs-AGi" id="rBv-Sl-74o"/>
+                        <outlet property="smallBoard3" destination="jLb-hc-rTa" id="8ZE-Ec-d7q"/>
+                        <outlet property="smallBoard4" destination="QpX-AP-aZz" id="nTh-w0-7jT"/>
+                        <outlet property="smallBoard5" destination="Zgw-JK-CSr" id="LX8-iT-Cu4"/>
+                        <outlet property="smallBoard6" destination="Iu0-JG-zES" id="j6o-rJ-hPN"/>
+                        <outlet property="smallBoard7" destination="3b0-PC-Rqo" id="Pi4-5y-Hfp"/>
+                        <outlet property="smallBoard8" destination="qbw-aE-yI0" id="ehl-Hj-bby"/>
+                        <outlet property="smallBoard9" destination="eIJ-DS-anO" id="gAR-id-5ig"/>
+                        <outlet property="undo" destination="htz-Qf-9I6" id="dVS-jU-2Se"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
