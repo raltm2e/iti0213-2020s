@@ -20,4 +20,15 @@ class SudokuBrain {
         // Change value of tile, +1
         
     }
+    
+    func generateBoard() -> Array<Any> {
+        var board1 = [[]]
+        for index in 1...9 {
+            for index2 in 1...9 {
+                let gameTile: Tile = Tile(value: 9)
+                board1[index][index2] = gameTile
+            }
+        }
+        return board1
+    }
 }

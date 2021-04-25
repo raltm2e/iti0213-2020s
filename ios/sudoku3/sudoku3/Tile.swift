@@ -9,9 +9,5 @@
 import Foundation
 
 struct Tile {
-    var isEmpty: Bool
-    
-    init(isEmpty: Bool) {
-        self.isEmpty = isEmpty
-    }
+    var value: Int
 }
