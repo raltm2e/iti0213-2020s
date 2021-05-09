@@ -1247,6 +1247,9 @@
                                                 <state key="normal" title="New Game">
                                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="startNewGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MBe-fh-wbw"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="htz-Qf-9I6">
                                                 <rect key="frame" x="91" y="0.0" width="37" height="30"/>
@@ -1264,7 +1267,6 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="newGame" destination="NZw-vA-PfY" id="SE1-xA-jav"/>
                         <outlet property="smallBoard1" destination="9mb-Pv-QYi" id="Jod-Vz-lCN"/>
                         <outlet property="smallBoard2" destination="xTw-Qs-AGi" id="rBv-Sl-74o"/>
                         <outlet property="smallBoard3" destination="jLb-hc-rTa" id="8ZE-Ec-d7q"/>
@@ -1274,7 +1276,6 @@
                         <outlet property="smallBoard7" destination="3b0-PC-Rqo" id="Pi4-5y-Hfp"/>
                         <outlet property="smallBoard8" destination="qbw-aE-yI0" id="ehl-Hj-bby"/>
                         <outlet property="smallBoard9" destination="eIJ-DS-anO" id="gAR-id-5ig"/>
-                        <outlet property="undo" destination="htz-Qf-9I6" id="dVS-jU-2Se"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

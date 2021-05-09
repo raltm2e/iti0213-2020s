@@ -20,9 +20,24 @@ class ViewController: UIViewController {
     @IBOutlet weak var smallBoard7: UIStackView!
     @IBOutlet weak var smallBoard8: UIStackView!
     @IBOutlet weak var smallBoard9: UIStackView!
-    @IBOutlet weak var newGame: UIButton!
-    @IBOutlet weak var undo: UIButton!
+    
     var smallBoardList = [UIStackView]()
+    
+    @IBAction func startNewGame(_ sender: UIButton) {
+        print("Starting new game")
+        appendSmallBoards()
+        for element in smallBoardList {
+            var i = 1
+            for view in element.subviews as [UIView] {
+                for view2 in view.subviews as [UIView] {
+                    if let btn = view2 as? UIButton {
+                        btn.setTitle(String(i), for: .normal)
+                        i += 1
+                    }
+                }
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
