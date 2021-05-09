@@ -26,11 +26,14 @@ class ViewController: UIViewController {
     @IBAction func startNewGame(_ sender: UIButton) {
         print("Starting new game")
         appendSmallBoards()
+        let newboard = getNewGameBoard()
+        var j = 0
         for element in smallBoardList {
             var i = 1
             for view in element.subviews as [UIView] {
                 for view2 in view.subviews as [UIView] {
                     if let btn = view2 as? UIButton {
+                        // TODO var buttonvalue = newboard[j]
                         btn.setTitle(String(i), for: .normal)
                         i += 1
                     }

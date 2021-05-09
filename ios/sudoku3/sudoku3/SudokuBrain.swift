@@ -22,13 +22,9 @@ class SudokuBrain {
     }
     
     func generateBoard() -> Array<Any> {
-        var board1 = [[]]
-        for index in 1...9 {
-            for index2 in 1...9 {
-                let gameTile: Tile = Tile(value: 9)
-                board1[index][index2] = gameTile
-            }
-        }
-        return board1
+        let gameboard1 = ["---68-19-", "26--7---4", "7-1-9-5--", "82---4-5-", "1--6-2--3", "-4-9---28", "--9-4-7-3", "3---5--18", "-74-36---"]
+        let gameboards = [gameboard1]
+        let randomnumber = Int.random(in: 0..<gameboards.count - 1)
+        return gameboards[randomnumber]
     }
 }
