@@ -27,18 +27,26 @@ class ViewController: UIViewController {
         print("Starting new game")
         appendSmallBoards()
         let newboard = getNewGameBoard()
+        print(newboard)
+        print(newboard[0].count)
+        print(newboard[0][0])
         var j = 0
         for element in smallBoardList {
-            var i = 1
+            var i = 0
             for view in element.subviews as [UIView] {
                 for view2 in view.subviews as [UIView] {
                     if let btn = view2 as? UIButton {
-                        // TODO var buttonvalue = newboard[j]
-                        btn.setTitle(String(i), for: .normal)
+                        let buttonvalue = newboard[j][i]
+                        if buttonvalue == "-" {
+                            btn.setTitle("", for: .normal)
+                        } else {
+                            btn.setTitle(String(buttonvalue), for: .normal)
+                        }
                         i += 1
                     }
                 }
             }
+            j += 1
         }
     }
     
@@ -47,10 +55,10 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    func getNewGameBoard() -> Array<Any> {
+    func getNewGameBoard() -> Array<String> {
         appendSmallBoards()
         let gameBoard = game.generateBoard()
-        return gameBoard
+        return gameBoard as! Array<String>
     }
     
     private func appendSmallBoards() {
@@ -65,5 +73,20 @@ class ViewController: UIViewController {
             smallBoardList.append(smallBoard8)
             smallBoardList.append(smallBoard9)
         }
+    }
+    
+
+}
+
+extension String {
+    subscript (index: Int) -> Character {
+        let charIndex = self.index(self.startIndex, offsetBy: index)
+        return self[charIndex]
+    }
+    
+    subscript (range: Range<Int>) -> Substring {
+        let startIndex = self.index(self.startIndex, offsetBy: range.startIndex)
+        let stopIndex = self.index(self.startIndex, offsetBy: range.startIndex + range.count)
+        return self[startIndex..<stopIndex]
     }
 }
