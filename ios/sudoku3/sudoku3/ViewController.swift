@@ -27,9 +27,6 @@ class ViewController: UIViewController {
         print("Starting new game")
         appendSmallBoards()
         let newboard = getNewGameBoard()
-        print(newboard)
-        print(newboard[0].count)
-        print(newboard[0][0])
         var j = 0
         for element in smallBoardList {
             var i = 0
@@ -42,11 +39,25 @@ class ViewController: UIViewController {
                         } else {
                             btn.setTitle(String(buttonvalue), for: .normal)
                         }
+                        btn.addTarget(self, action: #selector(ViewController.buttonClicked), for: .touchUpInside)
                         i += 1
                     }
                 }
             }
             j += 1
+        }
+    }
+    
+    @objc func buttonClicked(_ sender: UIButton) {
+        print(sender.titleLabel?.text)
+        if sender.titleLabel?.text == "" {
+            sender.setTitle("1", for: .normal)
+        } else if sender.titleLabel?.text == "9" {
+            sender.setTitle("", for: .normal)
+        } else {
+            var value: Int = Int(sender.titleLabel?.text! ?? "1")!
+            value += 1
+            sender.setTitle(String(value), for: .normal)
         }
     }
     
@@ -58,7 +69,7 @@ class ViewController: UIViewController {
     func getNewGameBoard() -> Array<String> {
         appendSmallBoards()
         let gameBoard = game.generateBoard()
-        return gameBoard as! Array<String>
+        return gameBoard
     }
     
     private func appendSmallBoards() {
