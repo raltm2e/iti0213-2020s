@@ -49,13 +49,12 @@ class ViewController: UIViewController {
     }
     
     @objc func buttonClicked(_ sender: UIButton) {
-        print(sender.titleLabel?.text)
-        if sender.titleLabel?.text == "" {
+        if sender.titleLabel?.text == "9" {
+            sender.setTitle("-", for: .normal)
+        } else if ((sender.titleLabel?.text) == nil) || sender.titleLabel?.text == "-" {
             sender.setTitle("1", for: .normal)
-        } else if sender.titleLabel?.text == "9" {
-            sender.setTitle("", for: .normal)
         } else {
-            var value: Int = Int(sender.titleLabel?.text! ?? "1")!
+            var value: Int = Int(sender.titleLabel?.text! ?? "0")!
             value += 1
             sender.setTitle(String(value), for: .normal)
         }
