@@ -36,6 +36,7 @@ class GameBoard {
                 let randomnumber = Int.random(in: 0..<gameboardshard.count)
                 return gameboardshard[randomnumber]
             }
+            return gameboardhard1
         }
         print("Something bad")
         return gameboardeasy1

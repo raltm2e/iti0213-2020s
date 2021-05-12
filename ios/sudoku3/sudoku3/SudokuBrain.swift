@@ -10,9 +10,8 @@ import Foundation
 
 class SudokuBrain {
     var gameBoardController: GameBoard = GameBoard()
-    var difficulty: String = "easy"
     
-    func generateBoard() -> Array<String> {
+    func generateBoard(difficulty: String) -> Array<String> {
         return gameBoardController.getrandomboard(difficulty: difficulty)
     }
     

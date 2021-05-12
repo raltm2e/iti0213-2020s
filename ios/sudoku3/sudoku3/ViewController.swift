@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     var game: SudokuBrain = SudokuBrain()
+    var difficulty: String = "easy"
 
     @IBOutlet weak var smallBoard1: UIStackView!
     @IBOutlet weak var smallBoard2: UIStackView!
@@ -55,8 +56,10 @@ class ViewController: UIViewController {
     @IBAction func changeDifficulty(_ sender: UIButton) {
         if sender.titleLabel?.text == "easy" {
             sender.setTitle("hard", for: .normal)
+            difficulty = "hard"
         } else {
             sender.setTitle("easy", for: .normal)
+            difficulty = "easy"
         }
     }
     
@@ -96,7 +99,7 @@ class ViewController: UIViewController {
     
     func getNewGameBoard() -> Array<String> {
         appendSmallBoards()
-        let gameBoard = game.generateBoard()
+        let gameBoard = game.generateBoard(difficulty: difficulty)
         return gameBoard
     }
     
