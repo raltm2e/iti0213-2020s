@@ -148,7 +148,6 @@ class ViewController: UIViewController {
         var textSeconds = String(seconds)
         var textMinutes = String(minutes)
         var textHours = String(hours)
-        print(textSeconds.count)
         if textSeconds.count == 1 {
             textSeconds = "0" + textSeconds
         }
