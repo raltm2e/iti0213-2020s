@@ -20,8 +20,6 @@ class SudokuBrain {
     func checkIfSolved(board: Array<String>) -> Bool {
         let solutions = gameBoardController.getsolutions()
         for solution in solutions {
-            print(solution)
-            print(board)
             if solution == board {
                 print("Solved")
                 return true

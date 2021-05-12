@@ -60,9 +60,6 @@ class ViewController: UIViewController {
             for view in smallboard.subviews as [UIView] {
                 for view2 in view.subviews as [UIView] {
                     if let btn = view2 as? UIButton {
-                        print("checking button")
-                        print(smallstring)
-                        print(btn.titleLabel?.text!)
                         smallstring = smallstring + ((btn.titleLabel?.text!)!)
                     }
                 }
