@@ -52,6 +52,14 @@ class ViewController: UIViewController {
         checkSolved()
     }
     
+    @IBAction func changeDifficulty(_ sender: UIButton) {
+        if sender.titleLabel?.text == "easy" {
+            sender.setTitle("hard", for: .normal)
+        } else {
+            sender.setTitle("easy", for: .normal)
+        }
+    }
+    
     func checkSolved() -> Bool {
         appendSmallBoards()
         var boardvalues = [String]()
