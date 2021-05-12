@@ -1202,7 +1202,7 @@
                                 </userDefinedRuntimeAttributes>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="3Hq-Q7-XLX">
-                                <rect key="frame" x="114" y="61" width="146" height="110"/>
+                                <rect key="frame" x="114" y="61" width="146" height="146.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="k4U-j5-x0j">
@@ -1264,6 +1264,12 @@
                                         </subviews>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keep working" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V53-EW-75g">
+                                        <rect key="frame" x="21.5" y="126" width="103.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -1280,6 +1286,7 @@
                         <outlet property="smallBoard7" destination="3b0-PC-Rqo" id="Pi4-5y-Hfp"/>
                         <outlet property="smallBoard8" destination="qbw-aE-yI0" id="ehl-Hj-bby"/>
                         <outlet property="smallBoard9" destination="eIJ-DS-anO" id="gAR-id-5ig"/>
+                        <outlet property="textIsSolved" destination="V53-EW-75g" id="McR-BT-uvK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

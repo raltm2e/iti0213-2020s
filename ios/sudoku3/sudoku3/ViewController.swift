@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var smallBoard7: UIStackView!
     @IBOutlet weak var smallBoard8: UIStackView!
     @IBOutlet weak var smallBoard9: UIStackView!
+    @IBOutlet weak var textIsSolved: UILabel!
     
     var smallBoardList = [UIStackView]()
     
@@ -47,10 +48,15 @@ class ViewController: UIViewController {
             }
             j += 1
         }
+        textIsSolved.text = "Started new game"
     }
     
     @IBAction func checkSolved(_ sender: UIButton) {
-        checkSolved()
+        if checkSolved() {
+            textIsSolved.text = "Solved!"
+        } else {
+            textIsSolved.text = "Not solved yet"
+        }
     }
     
     @IBAction func changeDifficulty(_ sender: UIButton) {
