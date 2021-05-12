@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     var timer = Timer()
     var secondsSpent = 0
     var gameActive = false
+    var newGameStarted = false
     @IBOutlet weak var textSecondsSpent: UILabel!
     
     @IBOutlet weak var smallBoard1: UIStackView!
@@ -55,6 +56,7 @@ class ViewController: UIViewController {
         }
         textStatus.text = "Started new game"
         gameActive = true
+        newGameStarted = true
         secondsSpent = 0
     }
     
@@ -118,7 +120,6 @@ class ViewController: UIViewController {
     
     @objc func updateCounting(){
         if gameActive {
-            secondsSpent += 1
             updateTextSeconds()
         }
     }
@@ -129,6 +130,7 @@ class ViewController: UIViewController {
         var minutes = Int(timeArray[1])!
         var seconds = Int(timeArray[2])!
         seconds += 1
+        secondsSpent = seconds
         if seconds == 59 {
             seconds = 0
             minutes += 1
@@ -137,7 +139,26 @@ class ViewController: UIViewController {
             minutes = 0
             hours += 1
         }
-        let timeText = String(hours) + ":" + String(minutes) + ":" + String(seconds)
+        if newGameStarted {
+            seconds = 0
+            minutes = 0
+            hours = 0
+            newGameStarted = false
+        }
+        var textSeconds = String(seconds)
+        var textMinutes = String(minutes)
+        var textHours = String(hours)
+        print(textSeconds.count)
+        if textSeconds.count == 1 {
+            textSeconds = "0" + textSeconds
+        }
+        if textMinutes.count == 1 {
+            textMinutes = "0" + textMinutes
+        }
+        if textHours.count == 1 {
+            textHours = "0" + textHours
+        }
+        let timeText = textHours + ":" + textMinutes + ":" + textSeconds
         textSecondsSpent.text = timeText
     }
     
