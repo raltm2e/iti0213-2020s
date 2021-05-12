@@ -37,7 +37,7 @@ class ViewController: UIViewController {
                     if let btn = view2 as? UIButton {
                         let buttonvalue = newboard[j][i]
                         if buttonvalue == "-" {
-                            btn.setTitle("", for: .normal)
+                            btn.setTitle("-", for: .normal)
                         } else {
                             btn.setTitle(String(buttonvalue), for: .normal)
                         }
