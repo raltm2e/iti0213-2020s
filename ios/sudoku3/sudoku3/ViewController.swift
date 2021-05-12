@@ -48,6 +48,30 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func checkSolved(_ sender: UIButton) {
+        checkSolved()
+    }
+    
+    func checkSolved() -> Bool {
+        appendSmallBoards()
+        var boardvalues = [String]()
+        for smallboard in smallBoardList {
+            var smallstring = ""
+            for view in smallboard.subviews as [UIView] {
+                for view2 in view.subviews as [UIView] {
+                    if let btn = view2 as? UIButton {
+                        print("checking button")
+                        print(smallstring)
+                        print(btn.titleLabel?.text!)
+                        smallstring = smallstring + ((btn.titleLabel?.text!)!)
+                    }
+                }
+            }
+            boardvalues.append(smallstring)
+        }
+        return game.checkIfSolved(board: boardvalues)
+    }
+    
     @objc func buttonClicked(_ sender: UIButton) {
         if sender.titleLabel?.text == "9" {
             sender.setTitle("-", for: .normal)

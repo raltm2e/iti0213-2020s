@@ -14,6 +14,9 @@ class GameBoard {
     let gameboardeasy1solution = ["435682197", "269571834", "781493562", "826374951", "195682743", "347915628", "519248763", "326957418", "874136259"]
     //let gameboardseasy = [gameboardeasy1]
     
+    func getsolutions() -> Array<Array<String>> {
+        return [gameboardeasy1solution]
+    }
     
     func getrandomboard(difficulty: String) -> Array<String> {
         """
