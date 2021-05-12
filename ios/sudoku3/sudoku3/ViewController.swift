@@ -11,7 +11,12 @@ import UIKit
 class ViewController: UIViewController {
     var game: SudokuBrain = SudokuBrain()
     var difficulty: String = "easy"
-
+    
+    var timer = Timer()
+    var secondsSpent = 0
+    var gameActive = false
+    @IBOutlet weak var textSecondsSpent: UILabel!
+    
     @IBOutlet weak var smallBoard1: UIStackView!
     @IBOutlet weak var smallBoard2: UIStackView!
     @IBOutlet weak var smallBoard3: UIStackView!
@@ -21,7 +26,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var smallBoard7: UIStackView!
     @IBOutlet weak var smallBoard8: UIStackView!
     @IBOutlet weak var smallBoard9: UIStackView!
-    @IBOutlet weak var textIsSolved: UILabel!
+    @IBOutlet weak var textStatus: UILabel!
     
     var smallBoardList = [UIStackView]()
     
@@ -48,14 +53,16 @@ class ViewController: UIViewController {
             }
             j += 1
         }
-        textIsSolved.text = "Started new game"
+        textStatus.text = "Started new game"
+        gameActive = true
+        secondsSpent = 0
     }
     
     @IBAction func checkSolved(_ sender: UIButton) {
         if checkSolved() {
-            textIsSolved.text = "Solved!"
+            textStatus.text = "Solved!"
         } else {
-            textIsSolved.text = "Not solved yet"
+            textStatus.text = "Not solved yet"
         }
     }
     
@@ -100,7 +107,38 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        scheduledTimerWithTimeInterval()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    func scheduledTimerWithTimeInterval(){
+        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.updateCounting), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateCounting(){
+        if gameActive {
+            secondsSpent += 1
+            updateTextSeconds()
+        }
+    }
+    
+    func updateTextSeconds() {
+        let timeArray = textSecondsSpent.text!.split{$0 == ":"}.map(String.init)
+        var hours = Int(timeArray[0])!
+        var minutes = Int(timeArray[1])!
+        var seconds = Int(timeArray[2])!
+        seconds += 1
+        if seconds == 59 {
+            seconds = 0
+            minutes += 1
+        }
+        if minutes == 59 {
+            minutes = 0
+            hours += 1
+        }
+        let timeText = String(hours) + ":" + String(minutes) + ":" + String(seconds)
+        textSecondsSpent.text = timeText
     }
     
     func getNewGameBoard() -> Array<String> {

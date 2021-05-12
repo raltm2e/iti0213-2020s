@@ -31,7 +31,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:06:39" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hf8-I0-Fz2">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hf8-I0-Fz2">
                                                 <rect key="frame" x="50" y="0.0" width="64" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <nil key="textColor"/>
@@ -1286,7 +1286,8 @@
                         <outlet property="smallBoard7" destination="3b0-PC-Rqo" id="Pi4-5y-Hfp"/>
                         <outlet property="smallBoard8" destination="qbw-aE-yI0" id="ehl-Hj-bby"/>
                         <outlet property="smallBoard9" destination="eIJ-DS-anO" id="gAR-id-5ig"/>
-                        <outlet property="textIsSolved" destination="V53-EW-75g" id="McR-BT-uvK"/>
+                        <outlet property="textSecondsSpent" destination="Hf8-I0-Fz2" id="t6l-dM-YN7"/>
+                        <outlet property="textStatus" destination="V53-EW-75g" id="McR-BT-uvK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
