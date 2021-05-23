@@ -92,7 +92,7 @@ class ViewController: UIViewController {
             }
             boardvalues.append(smallstring)
         }
-        return game.checkIfSolved(board: boardvalues)
+        return game.checkIfSolved(board: boardvalues, difficulty: difficulty, secondsSpent: secondsSpent)
     }
     
     @objc func buttonClicked(_ sender: UIButton) {

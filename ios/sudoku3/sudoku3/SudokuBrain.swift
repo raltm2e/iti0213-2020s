@@ -13,8 +13,8 @@ class SudokuBrain {
     var leaderBoard: Array<String> = []
     
     func generateBoard(difficulty: String) -> Array<String> {
-        return gameBoardController.gameboardeasy1solution
-        //return gameBoardController.getrandomboard(difficulty: difficulty)
+        //return gameBoardController.gameboardeasy1solution
+        return gameBoardController.getrandomboard(difficulty: difficulty)
     }
     
     func checkIfSolved(board: Array<String>, difficulty: String, secondsSpent: Int) -> Bool {
