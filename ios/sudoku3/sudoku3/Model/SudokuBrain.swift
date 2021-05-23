@@ -10,11 +10,11 @@ import Foundation
 
 class SudokuBrain {
     var gameBoardController: GameBoard = GameBoard()
-    var leaderBoard: Array<String> = []
+    var leaderBoard: [Game] = []
     
     func generateBoard(difficulty: String) -> Array<String> {
-        //return gameBoardController.gameboardeasy1solution
-        return gameBoardController.getrandomboard(difficulty: difficulty)
+        return gameBoardController.gameboardeasy1solution
+        //return gameBoardController.getrandomboard(difficulty: difficulty)
     }
     
     func checkIfSolved(board: Array<String>, difficulty: String, secondsSpent: Int) -> Bool {
@@ -30,6 +30,15 @@ class SudokuBrain {
     }
     
     func saveGameStatistics(difficulty: String, secondsSpent: Int) {
-        leaderBoard.append(String(secondsSpent))
+        let completedGame = Game(difficulty: difficulty, secondsSpent: secondsSpent, playerName: "Hue")
+        leaderBoard.append(completedGame)
+        print(leaderBoard)
+        for element in leaderBoard {
+            element.toString()
+        }
+    }
+    
+    func getLeaderboard() -> [Game] {
+        return self.leaderBoard
     }
 }

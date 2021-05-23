@@ -62,7 +62,9 @@ class ViewController: UIViewController {
     
     @IBAction func checkSolved(_ sender: UIButton) {
         if checkSolved() {
+            gameActive = false
             textStatus.text = "Solved!"
+            
         } else {
             textStatus.text = "Not solved yet"
         }
@@ -163,7 +165,7 @@ class ViewController: UIViewController {
     
     func getNewGameBoard() -> Array<String> {
         appendSmallBoards()
-        let gameBoard = game.generateBoard(difficulty: difficulty)
+        let gameBoard = self.game.generateBoard(difficulty: difficulty)
         return gameBoard
     }
     

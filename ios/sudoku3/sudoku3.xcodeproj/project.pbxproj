@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E1209602265A6D4C0029D6A3 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1209601265A6D4C0029D6A3 /* LeaderboardView.swift */; };
+		E1209605265A7C170029D6A3 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1209604265A7C170029D6A3 /* GameModel.swift */; };
+		E13804E7265AB1E200963CD7 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13804E6265AB1E100963CD7 /* LeaderboardViewController.swift */; };
 		E15F5E6726492B2000737AC4 /* GameBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15F5E6626492B2000737AC4 /* GameBoard.swift */; };
 		E1603AED2624699A00A03C2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1603AEC2624699A00A03C2A /* AppDelegate.swift */; };
 		E1603AEF2624699A00A03C2A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1603AEE2624699A00A03C2A /* ViewController.swift */; };
@@ -18,7 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E1209601265A6D4C0029D6A3 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
+		E1209604265A7C170029D6A3 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		E13804E6265AB1E100963CD7 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		E15F5E6626492B2000737AC4 /* GameBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoard.swift; sourceTree = "<group>"; };
 		E1603AE92624699900A03C2A /* sudoku3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sudoku3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1603AEC2624699A00A03C2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +43,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E1209603265A7BE40029D6A3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E15F5E6626492B2000737AC4 /* GameBoard.swift */,
+				E1209604265A7C170029D6A3 /* GameModel.swift */,
+				E1DD51072635C88D008D1A49 /* SudokuBrain.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		E1603AE02624699900A03C2A = {
 			isa = PBXGroup;
 			children = (
@@ -60,15 +72,14 @@
 		E1603AEB2624699A00A03C2A /* sudoku3 */ = {
 			isa = PBXGroup;
 			children = (
+				E1209603265A7BE40029D6A3 /* Model */,
 				E1603AEC2624699A00A03C2A /* AppDelegate.swift */,
 				E1603AEE2624699A00A03C2A /* ViewController.swift */,
 				E1603AF02624699A00A03C2A /* Main.storyboard */,
 				E1603AF32624699B00A03C2A /* Assets.xcassets */,
 				E1603AF52624699B00A03C2A /* LaunchScreen.storyboard */,
 				E1603AF82624699B00A03C2A /* Info.plist */,
-				E1DD51072635C88D008D1A49 /* SudokuBrain.swift */,
-				E15F5E6626492B2000737AC4 /* GameBoard.swift */,
-				E1209601265A6D4C0029D6A3 /* LeaderboardView.swift */,
+				E13804E6265AB1E100963CD7 /* LeaderboardViewController.swift */,
 			);
 			path = sudoku3;
 			sourceTree = "<group>";
@@ -144,11 +155,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1209602265A6D4C0029D6A3 /* LeaderboardView.swift in Sources */,
+				E13804E7265AB1E200963CD7 /* LeaderboardViewController.swift in Sources */,
 				E15F5E6726492B2000737AC4 /* GameBoard.swift in Sources */,
 				E1603AEF2624699A00A03C2A /* ViewController.swift in Sources */,
 				E1603AED2624699A00A03C2A /* AppDelegate.swift in Sources */,
 				E1DD51082635C88D008D1A49 /* SudokuBrain.swift in Sources */,
+				E1209605265A7C170029D6A3 /* GameModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +308,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F6PHKXPD5R;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				INFOPLIST_FILE = sudoku3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -314,6 +327,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F6PHKXPD5R;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				INFOPLIST_FILE = sudoku3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
