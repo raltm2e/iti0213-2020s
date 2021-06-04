@@ -6,12 +6,121 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import androidx.constraintlayout.widget.ConstraintLayout
-import ee.taltech.sudoku.sudokulib.GRID_SIZE
-import ee.taltech.sudoku.sudokulib.Level
-import ee.taltech.sudoku.sudokulib.Sudoku
+import ee.taltech.sudoku.sudokulib.LOGTAG
 
 class MainActivity : AppCompatActivity() {
     private lateinit var gameStateRepository: GameStateRepository
+    private var boardButtons = ArrayList<ArrayList<Button>>()
+
+    private fun initButtons() {
+        var smallList1 = ArrayList<Button>()
+        smallList1.add(findViewById(R.id.button11))
+        smallList1.add(findViewById(R.id.button12))
+        smallList1.add(findViewById(R.id.button13))
+        smallList1.add(findViewById(R.id.button14))
+        smallList1.add(findViewById(R.id.button15))
+        smallList1.add(findViewById(R.id.button16))
+        smallList1.add(findViewById(R.id.button17))
+        smallList1.add(findViewById(R.id.button18))
+        smallList1.add(findViewById(R.id.button19))
+        boardButtons.add(smallList1)
+
+        smallList1 = ArrayList()
+        smallList1.add(findViewById(R.id.button21))
+        smallList1.add(findViewById(R.id.button22))
+        smallList1.add(findViewById(R.id.button23))
+        smallList1.add(findViewById(R.id.button24))
+        smallList1.add(findViewById(R.id.button25))
+        smallList1.add(findViewById(R.id.button26))
+        smallList1.add(findViewById(R.id.button27))
+        smallList1.add(findViewById(R.id.button28))
+        smallList1.add(findViewById(R.id.button29))
+        boardButtons.add(smallList1)
+
+        smallList1 = ArrayList()
+        smallList1.add(findViewById(R.id.button31))
+        smallList1.add(findViewById(R.id.button32))
+        smallList1.add(findViewById(R.id.button33))
+        smallList1.add(findViewById(R.id.button34))
+        smallList1.add(findViewById(R.id.button35))
+        smallList1.add(findViewById(R.id.button36))
+        smallList1.add(findViewById(R.id.button37))
+        smallList1.add(findViewById(R.id.button38))
+        smallList1.add(findViewById(R.id.button39))
+        boardButtons.add(smallList1)
+
+        smallList1 = ArrayList()
+        smallList1.add(findViewById(R.id.button41))
+        smallList1.add(findViewById(R.id.button42))
+        smallList1.add(findViewById(R.id.button43))
+        smallList1.add(findViewById(R.id.button44))
+        smallList1.add(findViewById(R.id.button45))
+        smallList1.add(findViewById(R.id.button46))
+        smallList1.add(findViewById(R.id.button47))
+        smallList1.add(findViewById(R.id.button48))
+        smallList1.add(findViewById(R.id.button49))
+        boardButtons.add(smallList1)
+
+        smallList1 = ArrayList()
+        smallList1.add(findViewById(R.id.button51))
+        smallList1.add(findViewById(R.id.button52))
+        smallList1.add(findViewById(R.id.button53))
+        smallList1.add(findViewById(R.id.button54))
+        smallList1.add(findViewById(R.id.button55))
+        smallList1.add(findViewById(R.id.button56))
+        smallList1.add(findViewById(R.id.button57))
+        smallList1.add(findViewById(R.id.button58))
+        smallList1.add(findViewById(R.id.button59))
+        boardButtons.add(smallList1)
+
+        smallList1 = ArrayList()
+        smallList1.add(findViewById(R.id.button61))
+        smallList1.add(findViewById(R.id.button62))
+        smallList1.add(findViewById(R.id.button63))
+        smallList1.add(findViewById(R.id.button64))
+        smallList1.add(findViewById(R.id.button65))
+        smallList1.add(findViewById(R.id.button66))
+        smallList1.add(findViewById(R.id.button67))
+        smallList1.add(findViewById(R.id.button68))
+        smallList1.add(findViewById(R.id.button69))
+        boardButtons.add(smallList1)
+
+        smallList1 = ArrayList()
+        smallList1.add(findViewById(R.id.button71))
+        smallList1.add(findViewById(R.id.button72))
+        smallList1.add(findViewById(R.id.button73))
+        smallList1.add(findViewById(R.id.button74))
+        smallList1.add(findViewById(R.id.button75))
+        smallList1.add(findViewById(R.id.button76))
+        smallList1.add(findViewById(R.id.button77))
+        smallList1.add(findViewById(R.id.button78))
+        smallList1.add(findViewById(R.id.button79))
+        boardButtons.add(smallList1)
+
+        smallList1 = ArrayList()
+        smallList1.add(findViewById(R.id.button81))
+        smallList1.add(findViewById(R.id.button82))
+        smallList1.add(findViewById(R.id.button83))
+        smallList1.add(findViewById(R.id.button84))
+        smallList1.add(findViewById(R.id.button85))
+        smallList1.add(findViewById(R.id.button86))
+        smallList1.add(findViewById(R.id.button87))
+        smallList1.add(findViewById(R.id.button88))
+        smallList1.add(findViewById(R.id.button89))
+        boardButtons.add(smallList1)
+
+        smallList1 = ArrayList()
+        smallList1.add(findViewById(R.id.button91))
+        smallList1.add(findViewById(R.id.button92))
+        smallList1.add(findViewById(R.id.button93))
+        smallList1.add(findViewById(R.id.button94))
+        smallList1.add(findViewById(R.id.button95))
+        smallList1.add(findViewById(R.id.button96))
+        smallList1.add(findViewById(R.id.button97))
+        smallList1.add(findViewById(R.id.button98))
+        smallList1.add(findViewById(R.id.button99))
+        boardButtons.add(smallList1)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,48 +135,32 @@ class MainActivity : AppCompatActivity() {
 
     fun generateGameBoard(view: View) {
         val layouts: ConstraintLayout = findViewById(R.id.gameboard)
-        val gameBoardMapSmall: MutableMap<Int, MutableList<Button>> = mutableMapOf<Int, MutableList<Button>>()
-        for (i in 0 until layouts.childCount) {
-            val buttons9: MutableList<Button> = ArrayList()
-            // Get elements of single 3x3 square, add them to a list of buttons
-            // This is necessary to add values to them obtained by board generator
-            val singleSquare = layouts.getChildAt(i) as ConstraintLayout
-            for (j in 0 until singleSquare.childCount) {
-                buttons9.add(singleSquare.getChildAt(j) as Button)
+        val easyboard = arrayOf("---68-19-", "26--7---4", "7-1-9-5--", "82---4-5-", "1--6-2--3", "-4-9---28", "--9-4-7-3", "3---5--18", "-74-36---")
+        initButtons()
+        var i = 0
+        var j = 0
+        Log.d(LOGTAG, "")
+        for (smallBoard in boardButtons) {
+            for (button in smallBoard) {
+                Log.d(LOGTAG, "adding value")
+                button.text = easyboard[j][i].toString()
+                button.setOnClickListener {
+                    if (button.text == "-") {
+                        button.text = "0"
+                    }
+                    val buttonValue = button.text.toString().toInt() + 1
+                    if (buttonValue == 10) {
+                        button.text = "-"
+                    }
+                    button.text = buttonValue.toString()
+                }
+                i += 1
             }
-            // Add buttons into dictionary so they are in order
-            gameBoardMapSmall[i + 1] = buttons9
-        }
-
-        // Generate a sudoku board
-        val generatedSudokuBoard = Sudoku.Builder().setLevel(Level.JUNIOR).build()
-        val generatedGameArray = generatedSudokuBoard.grid
-
-        // Add generated values to each buttons text
-        // GRID_SIZE + 1 is because button id starts from 11 and ends at 99
-        for (i in 1 until GRID_SIZE + 1) {
-            for (j in 1 until GRID_SIZE + 1) {
-                val buttonList9: MutableList<Button> = gameBoardMapSmall[i]!!
-                val buttonToChange: Button = buttonList9[j]
-                buttonToChange.text = generatedGameArray[i][j].toString()
-//                Log.d("ButtonID", buttonId)
-//                buttonId.text = generatedGameArray[i][j].toString()
-            }
+            i = 0
+            j += 1
         }
     }
 
-    private fun getButtonById(id: String, buttons: MutableList<Button>): Button {
-        for (i in 0 until buttons.size) {
-            Log.d("ButtonID", buttons[i].id.toString())
-            if (buttons[i].id.toString() == id) {
-                return buttons[i]
-            }
-        }
-        // I don't know how to return empty button
-        // This is just a placeholder, it should never go here
-        Log.d("ERROR", "getButtonById cant get correct amount of buttons to iterate")
-        return buttons[-1]
-    }
 
     fun buttonPressed(view: View) {
         val button1 = view as Button
@@ -75,12 +168,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun iterateNumber(button: Button): String {
-        if (button.text == "") {
+        if (button.text == "-") {
             return "1"
         }
         val buttonValue = button.text.toString().toInt() + 1
         if (buttonValue == 10) {
-            return ""
+            return "-"
         }
         return buttonValue.toString()
     }

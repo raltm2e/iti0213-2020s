@@ -34,15 +34,22 @@
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginEnd="8dp"
                     android:text="Time spent:" />
 
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginEnd="8dp"
                     android:text="Your highscore" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="Difficulty:" />
             </LinearLayout>
 
             <LinearLayout
@@ -52,18 +59,26 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/textViewTime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="32:19" />
+                    android:layout_marginStart="8dp"
+                    android:text="00:00:00" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/textViewScore"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="13:58" />
+                    android:layout_marginStart="8dp"
+                    android:text="00:00:00" />
+
+                <TextView
+                    android:id="@+id/textViewDifficulty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="easy" />
+
             </LinearLayout>
         </LinearLayout>
 
@@ -73,7 +88,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/buttonNewgame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
@@ -83,7 +98,7 @@
                 android:text="New Game" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/buttonDifficulty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -91,14 +106,7 @@
                 android:layout_weight="1"
                 android:text="Undo" />
 
-            <Button
-                android:id="@+id/button5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="16dp"
-                android:layout_weight="1"
-                android:text="Hint" />
+
         </LinearLayout>
     </LinearLayout>
 
