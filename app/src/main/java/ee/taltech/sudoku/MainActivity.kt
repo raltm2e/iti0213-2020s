@@ -130,6 +130,17 @@ class MainActivity : AppCompatActivity() {
         if (boardButtons.size <= 0) {
             initButtons()
         }
+        val gameBoardStrings = generateCurrentGameBoard()
+
+        Log.d(LOGTAG, gameBrain.checkIfSolved(gameBoardStrings).toString())
+        if (gameBrain.checkIfSolved(gameBoardStrings)) {
+            val gameBoardAsSingleString = gameBoardStrings.toString()
+            gameStateRepository.add(GameState(0, gameBoardAsSingleString, difficulty, timeRunInSeconds, 1))
+            endGame()
+        }
+    }
+
+    private fun generateCurrentGameBoard(): ArrayList<String> {
         // Generate array of strings to check if solution correct
         val gameBoardStrings = ArrayList<String>()
         var i = 0
@@ -140,17 +151,19 @@ class MainActivity : AppCompatActivity() {
             }
             i += 1
         }
-        Log.d(LOGTAG, gameBrain.checkIfSolved(gameBoardStrings).toString())
-        if (gameBrain.checkIfSolved(gameBoardStrings)) {
-            val gameBoardAsSingleString = gameBoardStrings.toString()
-            gameStateRepository.add(GameState(0, gameBoardAsSingleString, difficulty, timeRunInSeconds, 1))
-            endGame()
-        }
+        return gameBoardStrings
     }
 
     private fun endGame() {
         gameActive = false
         updateHighscore()
+    }
+
+    fun saveGame(view: View) {
+        if (gameActive) {
+            val gameBoardStrings = generateCurrentGameBoard()
+            gameStateRepository.add(GameState(0, gameBoardStrings.toString(), difficulty, timeRunInSeconds, 0))
+        }
     }
 
     fun changeDifficulty(view: View) {
