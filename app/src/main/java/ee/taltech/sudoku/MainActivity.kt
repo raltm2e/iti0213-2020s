@@ -25,13 +25,13 @@ class MainActivity : AppCompatActivity() {
     private var timeRunInSeconds = 0L
     private var timeRunInMillis = 0L
     private var gameActive = false
-
     private var lapTime = 0L
-    private var timeStarted = 0L
-    private var lastSecondTimestamp = 0L
 
     private fun startTimer() {
-        timeStarted = System.currentTimeMillis()
+        val timeStarted = System.currentTimeMillis()
+        timeRunInMillis = 0L
+        timeRunInSeconds = 0L
+        var lastSecondTimestamp = 0L
         gameActive = true
         Log.d(LOGTAG, "Timer started")
         CoroutineScope(Dispatchers.Main).launch {
@@ -55,6 +55,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         gameStateRepository = GameStateRepository(this).open()
+        updateHighscore()
+    }
+
+    private fun updateHighscore(): GameState {
+        val allGames = gameStateRepository.getAll()
+        var smallestTime = 999999999999999L
+        var smallestGame = GameState(0, "", "placeholder", 0L, 1)
+        if (allGames.isNotEmpty()) {
+            for (game in allGames) {
+                if (game.timeSpent < smallestTime) {
+                    smallestTime = game.timeSpent
+                    smallestGame = game
+                }
+            }
+        }
+        return smallestGame
     }
 
     override fun onDestroy() {
@@ -128,8 +144,13 @@ class MainActivity : AppCompatActivity() {
         if (gameBrain.checkIfSolved(gameBoardStrings)) {
             val gameBoardAsSingleString = gameBoardStrings.toString()
             gameStateRepository.add(GameState(0, gameBoardAsSingleString, difficulty, timeRunInSeconds, 1))
-            gameActive = false
+            endGame()
         }
+    }
+
+    private fun endGame() {
+        gameActive = false
+        updateHighscore()
     }
 
     fun changeDifficulty(view: View) {
