@@ -11,12 +11,14 @@ import com.google.gson.Gson
 import ee.taltech.sudoku.GameState
 import ee.taltech.sudoku.GameStateRepository
 import ee.taltech.sudoku.R
+import ee.taltech.sudoku.gameutility.GameUtility
 import ee.taltech.sudoku.sudokulib.LOAD_GAME
 import kotlinx.android.synthetic.main.rowview.view.*
 
 class RecyclerViewAdapterCustom(val context: Context, val repository: GameStateRepository): RecyclerView.Adapter<RecyclerViewAdapterCustom.ViewHolder>() {
 
     lateinit var dataSet: List<GameState>
+    private val gameUtility = GameUtility()
 
     fun refreshData() {
         dataSet = repository.getAll()
@@ -37,7 +39,8 @@ class RecyclerViewAdapterCustom(val context: Context, val repository: GameStateR
         val values = dataSet[position]
         holder.itemView.textViewId.text = values.id.toString()
         holder.itemView.textViewDifficultySaved.text = values.difficulty
-        holder.itemView.textViewTimeSpent.text = values.timeSpent.toString()
+        val formattedTime = gameUtility.getFormattedStopWatchTime(values.timeSpent * 1000)
+        holder.itemView.textViewTimeSpent.text = formattedTime
 
         // Add onclick to open button
         val openButton = holder.itemView.buttonLoadGame
