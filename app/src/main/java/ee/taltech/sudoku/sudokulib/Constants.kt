@@ -10,3 +10,4 @@ internal const val BOX_SIZE = 3
 
 const val LOGTAG = "LOGTAG"
 const val TIMER_UPDATE_INTERVAL = 1000L
+const val LOAD_GAME = "LOAD_GAME"

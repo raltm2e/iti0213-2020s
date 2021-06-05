@@ -1,5 +1,6 @@
 package ee.taltech.sudoku
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -56,6 +57,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         gameStateRepository = GameStateRepository(this).open()
         updateHighscore()
+
+        // Set navigation to loading
+        val loadButton = findViewById<Button>(R.id.buttonNavigateLoading)
+        loadButton.setOnClickListener {
+            val intent = Intent(this, LoadingActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun updateHighscore(): GameState {
