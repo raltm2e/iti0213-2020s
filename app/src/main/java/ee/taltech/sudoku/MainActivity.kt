@@ -5,13 +5,17 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import ee.taltech.sudoku.sudokulib.LOGTAG
 import ee.taltech.sudoku.sudokulib.SudokuBrain
+import kotlinx.android.synthetic.main.game_statistics.view.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var gameStateRepository: GameStateRepository
     private var gameBrain = SudokuBrain()
     private var boardButtons = ArrayList<ArrayList<Button>>()
+    private var difficulty = "easy"
+    private var timeSpentInSeconds = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,10 +28,22 @@ class MainActivity : AppCompatActivity() {
         gameStateRepository.close()
     }
 
+    private fun resetBoard() {
+        if (boardButtons.size <= 0) {
+            initButtons()
+        }
+        for (smallBoard in boardButtons) {
+            for (button in smallBoard) {
+                button.setOnClickListener(null)
+            }
+        }
+    }
+
     fun generateGameBoard(view: View) {
         if (boardButtons.size <= 0) {
             initButtons()
         }
+        resetBoard()
         Log.d(LOGTAG, "Generating board")
         val generatedBoard = gameBrain.getRandomBoard("solution")
         var i = 0
@@ -69,6 +85,23 @@ class MainActivity : AppCompatActivity() {
             i += 1
         }
         Log.d(LOGTAG, gameBrain.checkIfSolved(gameBoardStrings).toString())
+        if (gameBrain.checkIfSolved(gameBoardStrings)) {
+            val gameBoardAsSingleString = gameBoardStrings.toString()
+            gameStateRepository.add(GameState(0, gameBoardAsSingleString, difficulty, timeSpentInSeconds, 1))
+        }
+    }
+
+    fun changeDifficulty(view: View) {
+        Log.d(LOGTAG, "Changing difficulty from $difficulty")
+        if (difficulty == "easy") {
+            difficulty = "medium"
+        } else if(difficulty == "medium") {
+            difficulty = "hard"
+        } else if (difficulty == "hard") {
+            difficulty = "easy"
+        }
+        val textViewDifficulty = findViewById<TextView>(R.id.textViewDifficulty)
+        textViewDifficulty.text = difficulty
     }
 
     private fun initButtons() {

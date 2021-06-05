@@ -23,7 +23,7 @@ class DbHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, null, 
                         "$GAMEBOARD TEXT NOT NULL, " +
                         "$DIFFICULTY TEXT NOT NULL, " +
                         "$TIMESPENT INTEGER NOT NULL, " +
-                        "$GAMEFINISHED INTEGER);"
+                        "$GAMEFINISHED INTEGER NOT NULL);"
 
         const val SQL_DELETE_TABLES =
                 "DROP TABLE IF EXISTS $TABLE_GAMESTATE;"

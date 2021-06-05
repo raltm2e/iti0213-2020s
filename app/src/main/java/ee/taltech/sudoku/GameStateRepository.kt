@@ -19,7 +19,8 @@ class GameStateRepository(val context: Context) {
     }
 
     fun add(gameState: GameState){
-        var contentValues = ContentValues()
+        val contentValues = ContentValues()
+        contentValues.putNull(DbHelper.GAMESTATE_ID)
         contentValues.put(DbHelper.GAMEBOARD, gameState.gameBoard)
         contentValues.put(DbHelper.DIFFICULTY, gameState.difficulty)
         contentValues.put(DbHelper.TIMESPENT, gameState.timeSpent)
@@ -33,11 +34,13 @@ class GameStateRepository(val context: Context) {
         val cursor = db.query(DbHelper.TABLE_GAMESTATE, columns, null, null, null, null, DbHelper.TIMESPENT)
         while(cursor.moveToNext()){
             gameStates.add(
-                    GameState(cursor.getInt(0),
-                            cursor.getString(cursor.getColumnIndex(DbHelper.GAMEBOARD)),
-                            cursor.getString(cursor.getColumnIndex(DbHelper.DIFFICULTY)),
-                            cursor.getInt(1),
-                            cursor.getInt(2))
+                    GameState(
+                        cursor.getInt(cursor.getColumnIndex(DbHelper.GAMESTATE_ID)),
+                        cursor.getString(cursor.getColumnIndex(DbHelper.GAMEBOARD)),
+                        cursor.getString(cursor.getColumnIndex(DbHelper.DIFFICULTY)),
+                        cursor.getInt(cursor.getColumnIndex(DbHelper.TIMESPENT)),
+                        cursor.getInt(cursor.getColumnIndex(DbHelper.GAMEFINISHED))
+                    )
             )
         }
         cursor.close()
