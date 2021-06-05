@@ -28,13 +28,12 @@ class MainActivity : AppCompatActivity() {
         if (boardButtons.size <= 0) {
             initButtons()
         }
-
-        val generatedBoard = gameBrain.getRandomBoard("easy")
+        Log.d(LOGTAG, "Generating board")
+        val generatedBoard = gameBrain.getRandomBoard("solution")
         var i = 0
         var j = 0
         for (smallBoard in boardButtons) {
             for (button in smallBoard) {
-                Log.d(LOGTAG, "adding value")
                 button.text = generatedBoard[j][i].toString()
                 if (generatedBoard[j][i].toString() == "-") {
                     button.setOnClickListener {
@@ -53,6 +52,23 @@ class MainActivity : AppCompatActivity() {
             i = 0
             j += 1
         }
+    }
+
+    fun validateBoard(view: View) {
+        if (boardButtons.size <= 0) {
+            initButtons()
+        }
+        // Generate array of strings to check if solution correct
+        val gameBoardStrings = ArrayList<String>()
+        var i = 0
+        for (smallboard in boardButtons) {
+            gameBoardStrings.add("")
+            for (button in smallboard) {
+                gameBoardStrings[i] = gameBoardStrings[i] + button.text.toString()
+            }
+            i += 1
+        }
+        Log.d(LOGTAG, gameBrain.checkIfSolved(gameBoardStrings).toString())
     }
 
     private fun initButtons() {

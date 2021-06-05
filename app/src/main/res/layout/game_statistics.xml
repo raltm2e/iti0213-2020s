@@ -13,7 +13,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:baselineAligned="false">
 
 
         <LinearLayout
@@ -91,20 +92,31 @@
                 android:id="@+id/buttonNewgame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="4dp"
                 android:layout_weight="1"
                 android:onClick="generateGameBoard"
-                android:text="New Game" />
+                android:text="New Game"
+                android:textSize="12sp" />
 
             <Button
                 android:id="@+id/buttonDifficulty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
                 android:layout_weight="1"
-                android:text="Difficulty" />
+                android:text="Difficulty"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/buttonCheckSolved"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:onClick="validateBoard"
+                android:text="Validate"
+                android:textSize="12sp" />
 
 
         </LinearLayout>
