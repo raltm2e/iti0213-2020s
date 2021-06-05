@@ -5,12 +5,55 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import androidx.constraintlayout.widget.ConstraintLayout
 import ee.taltech.sudoku.sudokulib.LOGTAG
+import ee.taltech.sudoku.sudokulib.SudokuBrain
 
 class MainActivity : AppCompatActivity() {
     private lateinit var gameStateRepository: GameStateRepository
+    private var gameBrain = SudokuBrain()
     private var boardButtons = ArrayList<ArrayList<Button>>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        gameStateRepository = GameStateRepository(this).open()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        gameStateRepository.close()
+    }
+
+    fun generateGameBoard(view: View) {
+        if (boardButtons.size <= 0) {
+            initButtons()
+        }
+
+        val generatedBoard = gameBrain.getRandomBoard("easy")
+        var i = 0
+        var j = 0
+        for (smallBoard in boardButtons) {
+            for (button in smallBoard) {
+                Log.d(LOGTAG, "adding value")
+                button.text = generatedBoard[j][i].toString()
+                if (generatedBoard[j][i].toString() == "-") {
+                    button.setOnClickListener {
+                        if (button.text == "-") {
+                            button.text = "0"
+                        }
+                        val buttonValue = button.text.toString().toInt() + 1
+                        if (buttonValue == 10) {
+                            button.text = "-"
+                        }
+                        button.text = buttonValue.toString()
+                    }
+                }
+                i += 1
+            }
+            i = 0
+            j += 1
+        }
+    }
 
     private fun initButtons() {
         var smallList1 = ArrayList<Button>()
@@ -120,61 +163,5 @@ class MainActivity : AppCompatActivity() {
         smallList1.add(findViewById(R.id.button98))
         smallList1.add(findViewById(R.id.button99))
         boardButtons.add(smallList1)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        gameStateRepository = GameStateRepository(this).open()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        gameStateRepository.close()
-    }
-
-    fun generateGameBoard(view: View) {
-        val layouts: ConstraintLayout = findViewById(R.id.gameboard)
-        val easyboard = arrayOf("---68-19-", "26--7---4", "7-1-9-5--", "82---4-5-", "1--6-2--3", "-4-9---28", "--9-4-7-3", "3---5--18", "-74-36---")
-        initButtons()
-        var i = 0
-        var j = 0
-        Log.d(LOGTAG, "")
-        for (smallBoard in boardButtons) {
-            for (button in smallBoard) {
-                Log.d(LOGTAG, "adding value")
-                button.text = easyboard[j][i].toString()
-                button.setOnClickListener {
-                    if (button.text == "-") {
-                        button.text = "0"
-                    }
-                    val buttonValue = button.text.toString().toInt() + 1
-                    if (buttonValue == 10) {
-                        button.text = "-"
-                    }
-                    button.text = buttonValue.toString()
-                }
-                i += 1
-            }
-            i = 0
-            j += 1
-        }
-    }
-
-
-    fun buttonPressed(view: View) {
-        val button1 = view as Button
-        button1.text = iterateNumber(button1)
-    }
-
-    fun iterateNumber(button: Button): String {
-        if (button.text == "-") {
-            return "1"
-        }
-        val buttonValue = button.text.toString().toInt() + 1
-        if (buttonValue == 10) {
-            return "-"
-        }
-        return buttonValue.toString()
     }
 }
