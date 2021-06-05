@@ -38,7 +38,7 @@ class GameStateRepository(val context: Context) {
                         cursor.getInt(cursor.getColumnIndex(DbHelper.GAMESTATE_ID)),
                         cursor.getString(cursor.getColumnIndex(DbHelper.GAMEBOARD)),
                         cursor.getString(cursor.getColumnIndex(DbHelper.DIFFICULTY)),
-                        cursor.getInt(cursor.getColumnIndex(DbHelper.TIMESPENT)),
+                        cursor.getLong(cursor.getColumnIndex(DbHelper.TIMESPENT)),
                         cursor.getInt(cursor.getColumnIndex(DbHelper.GAMEFINISHED))
                     )
             )

@@ -6,16 +6,50 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import ee.taltech.sudoku.gameutility.GameUtility
 import ee.taltech.sudoku.sudokulib.LOGTAG
 import ee.taltech.sudoku.sudokulib.SudokuBrain
+import ee.taltech.sudoku.sudokulib.TIMER_UPDATE_INTERVAL
 import kotlinx.android.synthetic.main.game_statistics.view.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var gameStateRepository: GameStateRepository
     private var gameBrain = SudokuBrain()
+    private var gameUtility = GameUtility()
     private var boardButtons = ArrayList<ArrayList<Button>>()
     private var difficulty = "easy"
-    private var timeSpentInSeconds = 0
+    private var timeRunInSeconds = 0L
+    private var timeRunInMillis = 0L
+    private var gameActive = false
+
+    private var lapTime = 0L
+    private var timeStarted = 0L
+    private var lastSecondTimestamp = 0L
+
+    private fun startTimer() {
+        timeStarted = System.currentTimeMillis()
+        gameActive = true
+        Log.d(LOGTAG, "Timer started")
+        CoroutineScope(Dispatchers.Main).launch {
+            while(gameActive) {
+                lapTime = System.currentTimeMillis() - timeStarted
+                timeRunInMillis = lapTime
+                if(timeRunInMillis >= lastSecondTimestamp + 1000L) {
+                    timeRunInSeconds += 1
+                    lastSecondTimestamp += 1000L
+                }
+                val textViewTime = findViewById<TextView>(R.id.textViewTime)
+                val formattedTime = gameUtility.getFormattedStopWatchTime(timeRunInMillis)
+                Log.d(LOGTAG, formattedTime)
+                textViewTime.text = formattedTime
+                delay(TIMER_UPDATE_INTERVAL)
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,13 +71,19 @@ class MainActivity : AppCompatActivity() {
                 button.setOnClickListener(null)
             }
         }
+        gameActive = false
     }
 
-    fun generateGameBoard(view: View) {
+    fun startGame(view: View) {
         if (boardButtons.size <= 0) {
             initButtons()
         }
         resetBoard()
+        generateGameBoard()
+        startTimer()
+    }
+
+    private fun generateGameBoard() {
         Log.d(LOGTAG, "Generating board")
         val generatedBoard = gameBrain.getRandomBoard("solution")
         var i = 0
@@ -87,7 +127,8 @@ class MainActivity : AppCompatActivity() {
         Log.d(LOGTAG, gameBrain.checkIfSolved(gameBoardStrings).toString())
         if (gameBrain.checkIfSolved(gameBoardStrings)) {
             val gameBoardAsSingleString = gameBoardStrings.toString()
-            gameStateRepository.add(GameState(0, gameBoardAsSingleString, difficulty, timeSpentInSeconds, 1))
+            gameStateRepository.add(GameState(0, gameBoardAsSingleString, difficulty, timeRunInSeconds, 1))
+            gameActive = false
         }
     }
 

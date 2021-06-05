@@ -9,3 +9,4 @@ internal const val MAX_DIGIT_INDEX = 8
 internal const val BOX_SIZE = 3
 
 const val LOGTAG = "LOGTAG"
+const val TIMER_UPDATE_INTERVAL = 1000L
