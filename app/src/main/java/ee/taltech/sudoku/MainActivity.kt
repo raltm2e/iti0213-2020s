@@ -34,7 +34,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sessionToDraw: GameState
     private var gson = Gson()
 
-
     private fun startTimer() {
         var lastSecondTimestamp = 0L
         var previousTimeInterval = 0L
@@ -42,7 +41,6 @@ class MainActivity : AppCompatActivity() {
         gameActive = true
         Log.d(LOGTAG, "Timer started")
         CoroutineScope(Dispatchers.Main).launch {
-            Log.d(LOGTAG, timeRunInSeconds.toString())
             while(gameActive) {
                 lapTime = System.currentTimeMillis() - timeStarted
                 timeRunInMillis += lapTime - previousTimeInterval
@@ -75,6 +73,37 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, LoadingActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onSaveInstanceState(savedInstanceState: Bundle) {
+        savedInstanceState.putString("gameboard", generateCurrentGameBoard().toString())
+        savedInstanceState.putLong("timeRunInMillis", timeRunInMillis)
+        savedInstanceState.putLong("timeRunInSeconds", timeRunInSeconds)
+        savedInstanceState.putString("difficulty", difficulty)
+        Log.d(LOGTAG, "Difficulty: $difficulty")
+        super.onSaveInstanceState(savedInstanceState)
+        Log.d(LOGTAG, "Onsaveinstancestate")
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        Log.d(LOGTAG, "Onrestoreinstancestate")
+        super.onRestoreInstanceState(savedInstanceState)
+        difficulty = savedInstanceState.getString("difficulty").toString()
+        timeRunInSeconds = savedInstanceState.getLong("timeRunInSeconds")
+        timeRunInMillis = savedInstanceState.getLong("timeRunInMillis")
+        Log.d(LOGTAG, "Difficulty: $difficulty")
+        val gameBoard = savedInstanceState.getString("gameboard").toString()
+        val gameBoardAsList = gameBoard.split(", ")
+        val gameBoardAsArrayList = ArrayList<String>(gameBoardAsList)
+        for (i in 0 until gameBoardAsArrayList.size) {
+            gameBoardAsArrayList[i] = gameBoardAsArrayList[i].replace("[", "").replace("]", "")
+        }
+        drawGameBoard(gameBoardAsArrayList)
+        val textViewDifficulty = findViewById<TextView>(R.id.textViewDifficulty)
+        textViewDifficulty.text = difficulty
+        val textViewTime = findViewById<TextView>(R.id.textViewTime)
+        textViewTime.text = gameUtility.getFormattedStopWatchTime(timeRunInMillis)
+        startTimer()
     }
 
     var previousSessionBroadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
