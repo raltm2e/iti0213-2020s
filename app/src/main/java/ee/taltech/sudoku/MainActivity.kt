@@ -177,7 +177,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun generateGameBoard() {
         Log.d(LOGTAG, "Generating board")
-        val generatedBoard = gameBrain.getRandomBoard("solution")
+        val generatedBoard = gameBrain.getRandomBoard(difficulty)
         drawGameBoard(generatedBoard)
     }
 
