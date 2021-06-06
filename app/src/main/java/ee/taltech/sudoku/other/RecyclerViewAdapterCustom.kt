@@ -38,7 +38,11 @@ class RecyclerViewAdapterCustom(val context: Context, val repository: GameStateR
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val values = dataSet[position]
-        holder.itemView.textViewId.text = values.id.toString()
+        if (values.gameFinished == 1) {
+            holder.itemView.textViewCompleted.text = "Completed"
+        } else {
+            holder.itemView.textViewCompleted.text = "Not completed"
+        }
         holder.itemView.textViewDifficultySaved.text = values.difficulty
         val formattedTime = gameUtility.getFormattedStopWatchTime(values.timeSpent * 1000)
         holder.itemView.textViewTimeSpent.text = formattedTime
