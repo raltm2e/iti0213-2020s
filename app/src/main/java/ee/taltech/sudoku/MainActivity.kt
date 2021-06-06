@@ -1,17 +1,19 @@
 package ee.taltech.sudoku
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.google.gson.Gson
 import ee.taltech.sudoku.gameutility.GameUtility
-import ee.taltech.sudoku.sudokulib.LOGTAG
-import ee.taltech.sudoku.sudokulib.SudokuBrain
-import ee.taltech.sudoku.sudokulib.TIMER_UPDATE_INTERVAL
-import kotlinx.android.synthetic.main.game_statistics.view.*
+import ee.taltech.sudoku.sudokulib.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -27,6 +29,11 @@ class MainActivity : AppCompatActivity() {
     private var timeRunInMillis = 0L
     private var gameActive = false
     private var lapTime = 0L
+
+    private var showPreviousSession = false
+    private lateinit var sessionToDraw: GameState
+    private var gson = Gson()
+
 
     private fun startTimer() {
         val timeStarted = System.currentTimeMillis()
@@ -45,9 +52,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 val textViewTime = findViewById<TextView>(R.id.textViewTime)
                 val formattedTime = gameUtility.getFormattedStopWatchTime(timeRunInMillis)
-                Log.d(LOGTAG, formattedTime)
                 textViewTime.text = formattedTime
                 delay(TIMER_UPDATE_INTERVAL)
+                Log.d(LOGTAG, "Gameactive in timer: $gameActive")
             }
         }
     }
@@ -58,12 +65,41 @@ class MainActivity : AppCompatActivity() {
         gameStateRepository = GameStateRepository(this).open()
         updateHighscore()
 
+        LocalBroadcastManager.getInstance(this).registerReceiver(previousSessionBroadcastReceiver, IntentFilter(
+            UPDATE_GAME_INTENT)
+        )
+
         // Set navigation to loading
         val loadButton = findViewById<Button>(R.id.buttonNavigateLoading)
         loadButton.setOnClickListener {
             val intent = Intent(this, LoadingActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    var previousSessionBroadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent) {
+            showPreviousSession = intent.getBooleanExtra(LOAD_GAME, false)
+            sessionToDraw = gson.fromJson(intent.getStringExtra(SESSION_DISPLAY), GameState::class.java)
+            Log.d(LOGTAG, "Should Show Previous Session: ${showPreviousSession}")
+            drawGameFromSession()
+        }
+    }
+
+    private fun drawGameFromSession() {
+        resetBoard()
+        Log.d(LOGTAG, "Drawing game from session: ${sessionToDraw.gameBoard}")
+        val gameBoardAsList = sessionToDraw.gameBoard.split(", ")
+        val gameBoardAsArrayList = ArrayList<String>(gameBoardAsList)
+        for (i in 0 until gameBoardAsArrayList.size) {
+            gameBoardAsArrayList[i] = gameBoardAsArrayList[i].replace("[", "").replace("]", "")
+        }
+        Log.d(LOGTAG, "Session as array of strings: $gameBoardAsArrayList")
+
+        drawGameBoard(gameBoardAsArrayList)
+        timeRunInMillis = sessionToDraw.timeSpent * 1000
+        timeRunInSeconds = sessionToDraw.timeSpent
+        startTimer()
     }
 
     private fun updateHighscore(): GameState {
@@ -87,6 +123,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun resetBoard() {
+        gameActive = false
         if (boardButtons.size <= 0) {
             initButtons()
         }
@@ -95,13 +132,13 @@ class MainActivity : AppCompatActivity() {
                 button.setOnClickListener(null)
             }
         }
-        gameActive = false
     }
 
     fun startGame(view: View) {
         if (boardButtons.size <= 0) {
             initButtons()
         }
+        Thread.sleep(1000)
         resetBoard()
         generateGameBoard()
         startTimer()
@@ -110,6 +147,14 @@ class MainActivity : AppCompatActivity() {
     private fun generateGameBoard() {
         Log.d(LOGTAG, "Generating board")
         val generatedBoard = gameBrain.getRandomBoard("solution")
+        drawGameBoard(generatedBoard)
+    }
+
+    private fun drawGameBoard(generatedBoard: ArrayList<String>) {
+        Log.d(LOGTAG, "Drawing gameboard")
+        if (boardButtons.size <= 0) {
+            initButtons()
+        }
         var i = 0
         var j = 0
         for (smallBoard in boardButtons) {

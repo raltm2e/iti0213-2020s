@@ -2,6 +2,7 @@ package ee.taltech.sudoku.other
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,7 @@ import ee.taltech.sudoku.GameState
 import ee.taltech.sudoku.GameStateRepository
 import ee.taltech.sudoku.R
 import ee.taltech.sudoku.gameutility.GameUtility
-import ee.taltech.sudoku.sudokulib.LOAD_GAME
+import ee.taltech.sudoku.sudokulib.*
 import kotlinx.android.synthetic.main.rowview.view.*
 
 class RecyclerViewAdapterCustom(val context: Context, val repository: GameStateRepository): RecyclerView.Adapter<RecyclerViewAdapterCustom.ViewHolder>() {
@@ -45,12 +46,13 @@ class RecyclerViewAdapterCustom(val context: Context, val repository: GameStateR
         // Add onclick to open button
         val openButton = holder.itemView.buttonLoadGame
         val gson = Gson()
-//        openButton.setOnClickListener {
-//            val intent = Intent(LOAD_GAME)
-//            intent.putExtra(MAP_SHOW, true)
-//            intent.putExtra(SESSION_DISPLAY, gson.toJson(values))
-//            LocalBroadcastManager.getInstance(context).sendBroadcast(intent)
-//        }
+        openButton.setOnClickListener {
+            val intent = Intent(UPDATE_GAME_INTENT)
+            intent.putExtra(LOAD_GAME, true)
+            intent.putExtra(SESSION_DISPLAY, gson.toJson(values))
+            LocalBroadcastManager.getInstance(context).sendBroadcast(intent)
+            Log.d(LOGTAG, "Open button clicked")
+        }
 
     }
 
