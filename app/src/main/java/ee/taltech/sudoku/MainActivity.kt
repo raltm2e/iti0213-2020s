@@ -36,16 +36,17 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun startTimer() {
-        val timeStarted = System.currentTimeMillis()
-        timeRunInMillis = 0L
-        timeRunInSeconds = 0L
         var lastSecondTimestamp = 0L
+        var previousTimeInterval = 0L
+        val timeStarted = System.currentTimeMillis()
         gameActive = true
         Log.d(LOGTAG, "Timer started")
         CoroutineScope(Dispatchers.Main).launch {
+            Log.d(LOGTAG, timeRunInSeconds.toString())
             while(gameActive) {
                 lapTime = System.currentTimeMillis() - timeStarted
-                timeRunInMillis = lapTime
+                timeRunInMillis += lapTime - previousTimeInterval
+                previousTimeInterval = lapTime
                 if(timeRunInMillis >= lastSecondTimestamp + 1000L) {
                     timeRunInSeconds += 1
                     lastSecondTimestamp += 1000L
@@ -54,7 +55,6 @@ class MainActivity : AppCompatActivity() {
                 val formattedTime = gameUtility.getFormattedStopWatchTime(timeRunInMillis)
                 textViewTime.text = formattedTime
                 delay(TIMER_UPDATE_INTERVAL)
-                Log.d(LOGTAG, "Gameactive in timer: $gameActive")
             }
         }
     }
@@ -141,6 +141,8 @@ class MainActivity : AppCompatActivity() {
         Thread.sleep(1000)
         resetBoard()
         generateGameBoard()
+        timeRunInMillis = 0L
+        timeRunInSeconds = 0L
         startTimer()
     }
 
